@@ -43,8 +43,8 @@ const update = (req, res, next) => {
 };
 
 const destroy = (req, res, next) => {
-  let bookByUser = {_id: req.params.id, _owner: req.currentUser._id};
-  Book.findOneAndRemove(bookByUser)
+  let search = { _id: req.params.id, _owner: req.currentUser._id };
+  Book.findOne(search)
     .then(book => {
       if (!book) {
         return next();
