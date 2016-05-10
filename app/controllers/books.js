@@ -19,27 +19,23 @@ const show = (req, res, next) => {
 };
 
 const create = (req, res, next) => {
-<<<<<<< eac85e122fc42bed83e99f120328bc4a8f8e7637
-  let book = Object.assign({ _owner: req.currentUser._id }, req.body.book);
-=======
   let book = Object.assign(req.body.book, {
     _owner: req.currentUser._id,
   });
->>>>>>> GET and POST actions in place
   Book.create(book)
     .then(book => res.json({ book }))
     .catch(err => next(err));
 };
 
-<<<<<<< eac85e122fc42bed83e99f120328bc4a8f8e7637
 const update = (req, res, next) => {
-  let bookByUser = {_id: req.params.id, _owner: req.currentUser._id};
-  Book.findOneAndUpdate(bookByUser, req.body.book)
+  let search = { _id: req.params.id, _owner: req.currentUser._id };
+  Book.findOne(search)
     .then(book => {
       if (!book) {
         return next();
       }
 
+      delete req.body._owner;  // disallow owner reassignment.
       return book.update(req.body.book)
         .then(() => res.sendStatus(200));
     })
@@ -60,17 +56,12 @@ const destroy = (req, res, next) => {
     .catch(err => next(err));
 };
 
-=======
->>>>>>> GET and POST actions in place
 module.exports = controller({
   index,
   show,
   create,
-<<<<<<< eac85e122fc42bed83e99f120328bc4a8f8e7637
   update,
   destroy,
-=======
->>>>>>> GET and POST actions in place
 }, { before: [
   { method: authenticate, except: ['index', 'show'] },
 ], });
