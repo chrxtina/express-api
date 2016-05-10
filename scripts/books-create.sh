@@ -5,9 +5,9 @@ curl --include --request POST http://localhost:3000/books \
   --header "Content-Type: application/json" \
   --data '{
     "book": {
-      "title": "The Name of the Wind",
-      "author": "Patrick Rothfuss",
-      "price": "8.99"
+      "title": "Between the World and Me",
+      "author": "Ta-Nehisi Coates",
+      "price": "12.99"
     }
   }'
 
@@ -16,8 +16,8 @@ curl --include --request POST http://localhost:3000/books \
   --header "Content-Type: application/json" \
   --data '{
     "book": {
-      "title": "Time Enough for Love",
-      "author": "Robert A. Heinlein",
-      "price": "8.99"
+      "title": "Invisible Monsters",
+      "author": "Chuck Palahniuk",
+      "price": "10.99"
     }
   }'
